@@ -1,53 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import Navbar from "../components/Navbar";
-// import Footer from "../components/Footer";
-
-// export default function MyOrder() {
-//   const [orderData, setOrderData] = useState({});
-//   const fetchMyOrder = async () => {
-//     try {
-//       const res = await fetch("http://localhost:5000/api/myOrderData", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           email: localStorage.getItem("userEmail"),
-//         }),
-//       });
-
-//       const response = await res.json();
-//       console.log(response); // Debugging to verify the response
-//       setOrderData(response); // Ensure correct structure
-//     } catch (error) {
-//       console.error("Error fetching order data:", error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchMyOrder();
-//   }, []);
-//   return (
-//     <>
-//       <div>
-//         <Navbar />
-//       </div>
-//       <div className="container">
-//         <div className="row">
-//             {console.log(Array(orderData))}
-            
-//         </div>
-//       </div>
-//       <div>
-//         <Footer />
-//       </div>
-//     </>
-//   );
-// }
-
-
-
-
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -86,7 +36,7 @@ export default function MyOrder() {
         <h2 className="text-center">My Orders</h2>
         <div className="row">
           {orderData.length > 0 ? (
-            orderData.map((order, index) => (
+            [...orderData].reverse().map((order, index) => (
               <div key={index} className="m-auto mt-4">
                 <h5>Order Date: {order.orderDate}</h5>
                 <hr />

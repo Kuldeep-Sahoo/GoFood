@@ -1,6 +1,7 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
-const mongoURL = "mongodb+srv://gofood:Sahoo1234567890@cluster0.8o0ds.mongodb.net/gofood?retryWrites=true&w=majority&appName=Cluster0";
-// const mongoURL = "mongodb://localhost:27017/gofood";
+const mongoURL =process.env.MONGO_URL_ONLINE;
+// const mongoURL = process.env.MONGO_URL_LOCAL;
 mongoose.connect(mongoURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,

@@ -9,7 +9,7 @@ import { useCart } from "../screens/ContextReducer";
 export default function Navbar() {
   const [cartView, setCartView] = useState(false);
 
-  var data = useCart()
+  var data = useCart();
 
   const navigate = useNavigate();
 
@@ -19,12 +19,13 @@ export default function Navbar() {
   };
 
   const handleAdminLogin = () => {
-      const password = prompt("if you are admin then enter your password")
-      if (password == "11111")
-        navigate("/kdjbefjhvbhjbvhbvjdfhgkjdfhgkjdfbjkfbvkjdfbjvbfjvbej683465834838634868346873687admin")
-      else
-        return
-  }
+    const password = prompt("if you are admin then enter your password");
+    if (password == "11111")
+      navigate(
+        "/kdjbefjhvbhjbvhbvjdfhgkjdfhgkjdfbjkfbvkjdfbjvbfjvbej683465834838634868346873687admin"
+      );
+    else return;
+  };
 
   return (
     <div>
@@ -86,8 +87,6 @@ export default function Navbar() {
                 >
                   SignUp
                 </Link>
-
-
               </div>
             ) : (
               <div>
@@ -115,27 +114,22 @@ export default function Navbar() {
                 >
                   Log Out
                 </div>
-                {
-                  localStorage.getItem("userEmail")=="sahoo192@gmail.com"?
-                      <div
-                        className="bg-danger text-white btn mx-2 justify-content-center"
-                        onClick={handleAdminLogin} style={{ borderRadius: "50%" }}
-                      >
-                        A
-                      </div>
-                  :
+                {localStorage.getItem("userEmail") == "sahoo192@gmail.com" ? (
+                  <div
+                    className="bg-danger text-white btn mx-2 justify-content-center"
+                    onClick={handleAdminLogin}
+                    style={{ borderRadius: "50%" }}
+                  >
+                    A
+                  </div>
+                ) : (
                   ""
-                  
-                }
+                )}
               </div>
-
-            )
-
-
-            }
+            )}
           </div>
         </div>
-      </nav >
-    </div >
+      </nav>
+    </div>
   );
 }

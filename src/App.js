@@ -7,7 +7,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes, //befote Switch is used instead of Routes
-  Link,
 } from "react-router-dom";
 import "../node_modules/bootstrap-dark-5/dist/css/bootstrap-colors.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
@@ -28,7 +27,7 @@ function App() {
             <Route exact path="/createuser" element={<Signup />} />
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/myOrders" element={<MyOrder />} />
-            <Route exact path="/kdjbefjhvbhjbvhbvjdfhgkjdfhgkjdfbjkfbvkjdfbjvbfjvbej683465834838634868346873687admin" element={<Admin />} />
+            <Route exact path={"/kdjbefjhvbhjbvhbvjdfhgkjdfhgkjdfbjkfbvkjdfbjvbfjvbej683465834838634868346873687admin"} element={<Admin />} />
 
 
           </Routes>
