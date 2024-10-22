@@ -6,11 +6,10 @@ import './Admin.css'; // Import custom CSS file
 
 export default function Admin() {
   const [orders, setOrders] = useState([]);
-
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/admin", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/admin`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

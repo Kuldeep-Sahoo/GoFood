@@ -15,6 +15,7 @@ import Cart from "./screens/Cart.js";
 import MyOrder from "./screens/MyOrder.js";
 import Admin from "./screens/Admin.js";
 
+const adminRoute = process.env.REACT_APP_ADMIN_ROUTE;
 function App() {
   return (
     <CartProvider>
@@ -27,9 +28,9 @@ function App() {
             <Route exact path="/createuser" element={<Signup />} />
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/myOrders" element={<MyOrder />} />
-            <Route exact path={"/kdjbefjhvbhjbvhbvjdfhgkjdfhgkjdfbjkfbvkjdfbjvbfjvbej683465834838634868346873687admin"} element={<Admin />} />
-
-
+            {adminRoute && (
+              <Route exact path={adminRoute} element={<Admin />} />
+            )}
           </Routes>
         </div>
       </Router>

@@ -1,4 +1,5 @@
 // rfc-->Creates a React Functional Component with ES7 module system (ES7+ React/Redux/React-Native snippets)
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Badge from "react-bootstrap/Badge";
@@ -18,13 +19,12 @@ export default function Navbar() {
     navigate("/");
   };
 
+  const adminRoute = process.env.REACT_APP_ADMIN_ROUTE;
+  console.log("Admin Route:", adminRoute); // For debugging
   const handleAdminLogin = () => {
     const password = prompt("if you are admin then enter your password");
-    if (password == "11111")
-      navigate(
-        "/kdjbefjhvbhjbvhbvjdfhgkjdfhgkjdfbjkfbvkjdfbjvbfjvbej683465834838634868346873687admin"
-      );
-    else return;
+    if (password === "11111") navigate(adminRoute);
+    else alert("Wrong password!");
   };
 
   return (

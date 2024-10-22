@@ -5,25 +5,25 @@ import Card from "../screens/Card";
 // import Carousel from "../components/Carousel";
 
 export default function Home() {
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   const [foodItem, setfoodItem] = useState([]);
   const [foodCategory, setfoodCategory] = useState([]);
 
   const loadData = async () => {
-    let response = await fetch("http://localhost:5000/api/foodData", {
+    let response = await fetch(`${process.env.REACT_APP_API_URL}/foodData`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
     });
-    response = await response.json()
+    response = await response.json();
     console.log(response[0], response[1]);
-    setfoodItem(response[0])
-    setfoodCategory(response[1])
+    setfoodItem(response[0]);
+    setfoodCategory(response[1]);
   };
   useEffect(() => {
     loadData();
-  }, []); //[] means no dependency 
+  }, []); //[] means no dependency
 
   return (
     <div>
@@ -39,7 +39,15 @@ export default function Home() {
         style={{ objectFit: "contain !important" }}
       >
         <div className="carousel-inner" id="carousel">
-          <div className="carousel-caption" value={onchange = (e) => { setSearch(e.target.value) }} style={{ zIndex: "10" }}>
+          <div
+            className="carousel-caption"
+            value={
+              (onchange = (e) => {
+                setSearch(e.target.value);
+              })
+            }
+            style={{ zIndex: "10" }}
+          >
             <div className="d-flex justify-content-center">
               <input
                 className="form-control me-2"
@@ -107,36 +115,40 @@ export default function Home() {
       </div>
       {/* Logic for display card */}
       <div className="m-2 container">
-        {
-          (foodCategory.length >0)
-            ? foodCategory.map((data) => {
-              return (
-                <div className="row mb-3">
-                  <div key={data._id} className="fs-3 m-3">
-                    {data.CategoryName}
-                  </div>
-                  <hr />
-                  {
-                    (foodItem.length >0)
-                      ?
-                      foodItem.filter((item) => item.CategoryName === data.CategoryName).map(filterItem => {
-                        return (
-                          <div key={filterItem._id} className="col-12 col-md-6 col-lg-3">
-                            <Card foodItem={filterItem}
-                              options={filterItem.options[0] }
-                              desc={filterItem.description}
-                            ></Card>
-                          </div>  
-                        )
-                      })
-                      : <div>No item found....</div>
-                  }
+        {foodCategory.length > 0 ? (
+          foodCategory.map((data) => {
+            return (
+              <div className="row mb-3">
+                <div key={data._id} className="fs-3 m-3">
+                  {data.CategoryName}
                 </div>
-              )
-            })
-            : <div>No category found....</div>
-        }
-
+                <hr />
+                {foodItem.length > 0 ? (
+                  foodItem
+                    .filter((item) => item.CategoryName === data.CategoryName)
+                    .map((filterItem) => {
+                      return (
+                        <div
+                          key={filterItem._id}
+                          className="col-12 col-md-6 col-lg-3"
+                        >
+                          <Card
+                            foodItem={filterItem}
+                            options={filterItem.options[0]}
+                            desc={filterItem.description}
+                          ></Card>
+                        </div>
+                      );
+                    })
+                ) : (
+                  <div>No item found....</div>
+                )}
+              </div>
+            );
+          })
+        ) : (
+          <div>No category found....</div>
+        )}
       </div>
       <div>
         <Footer />

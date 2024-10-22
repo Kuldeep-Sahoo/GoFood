@@ -13,7 +13,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault(); // synthetic event
     // console.log("Inputted Data:", credentials);
-    const response = await fetch("http://localhost:5000/api/createuser", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/createuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
