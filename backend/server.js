@@ -4,28 +4,17 @@ const app = express();
 const port = process.env.PORT || 5000;
 const mongoDB = require("./db");
 
-// app.use((req, res, next) => {
-//   res.setHeader(
-//     "Access-Control-Allow-Origin",
-//     "https://kuldeep-gofood.onrender.com/"
-//   );
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin,X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
-
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://kuldeep-gofood.onrender.com/"); // Allow requests from all origins
   res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Access-Control-Allow-Origin",
+    "http://localhost:3000"
   );
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin,X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
-
 // mongoDB();
 app.get("/", (req, res) => {
   res.send("Kuldeep");
