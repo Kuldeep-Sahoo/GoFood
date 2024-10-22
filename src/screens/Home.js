@@ -17,7 +17,6 @@ export default function Home() {
       },
     });
     response = await response.json();
-    console.log(response[0], response[1]);
     setfoodItem(response[0]);
     setfoodCategory(response[1]);
   };

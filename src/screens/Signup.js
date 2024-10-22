@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { json, Link } from "react-router-dom";
+import { json, Link,useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 export default function Signup() {
@@ -10,6 +10,7 @@ export default function Signup() {
     password: "",
     geolocation: "",
   });
+  const navigate=useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault(); // synthetic event
     // console.log("Inputted Data:", credentials);
@@ -26,11 +27,11 @@ export default function Signup() {
       }),
     });
     const json = await response.json();
-    console.log(json);
     if (!json.success) {
       alert("Enter Valid Credentials");
     } else {
-      console.log("User registered successfully:", json);
+      navigate("/login")
+      console.log("User registered successfully.....");
     }
   };
   const onChange = (event) => {

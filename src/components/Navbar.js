@@ -20,7 +20,6 @@ export default function Navbar() {
   };
 
   const adminRoute = process.env.REACT_APP_ADMIN_ROUTE;
-  console.log("Admin Route:", adminRoute); // For debugging
   const handleAdminLogin = () => {
     const password = prompt("if you are admin then enter your password");
     if (password === "11111") navigate(adminRoute);

@@ -48,7 +48,6 @@ export default function Card(props) {
           qty: qty,
           size: size,
         });
-        console.log("Size different so simply ADD one more to the list");
         return;
       }
       return;

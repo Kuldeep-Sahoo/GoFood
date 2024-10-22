@@ -23,11 +23,10 @@ export default function Login() {
       }),
     });
     const json = await response.json();
-    console.log(json);
     if (!json.success) {
       alert("Enter Valid Credentials");
     } else {
-      console.log("User Login successfully:", json);
+      console.log("User Login successfully...");
       localStorage.setItem("userEmail",credentials.email)
       localStorage.setItem("authToken", json.authToken);
       console.log(localStorage.getItem("authToken"));

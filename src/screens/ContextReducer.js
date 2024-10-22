@@ -23,7 +23,6 @@ const reducer = (state, action) => {
     }
 
     case "UPDATE":
-      console.log("update called");
 
       let arr = [...state];
       arr.find((food, index) => {

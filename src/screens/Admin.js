@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import './Admin.css'; // Import custom CSS file
+import "./Admin.css"; // Import custom CSS file
 
 export default function Admin() {
   const [orders, setOrders] = useState([]);
@@ -48,7 +48,7 @@ export default function Admin() {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
+              {[...orders].reverse().map((order) => (
                 <React.Fragment key={order.orderId}>
                   {order.orderData.map((orderData, index) => (
                     <tr key={index}>
@@ -68,7 +68,8 @@ export default function Admin() {
                               <ul>
                                 {orderData.items.map((item) => (
                                   <li key={item.id}>
-                                    {item.name} - Price: ₹{item.price}, Qty: {item.qty}, Size: {item.size}
+                                    {item.name} - Price: ₹{item.price}, Qty:{" "}
+                                    {item.qty}, Size: {item.size}
                                   </li>
                                 ))}
                               </ul>
@@ -87,7 +88,8 @@ export default function Admin() {
                               <ul>
                                 {orderData.items.map((item) => (
                                   <li key={item.id}>
-                                    {item.name} - Price: ₹{item.price}, Qty: {item.qty}, Size: {item.size}
+                                    {item.name} - Price: ₹{item.price}, Qty:{" "}
+                                    {item.qty}, Size: {item.size}
                                   </li>
                                 ))}
                               </ul>

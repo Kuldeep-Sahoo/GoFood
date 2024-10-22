@@ -7,7 +7,7 @@ const mongoDB = require("./db");
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "http://localhost:3000" || process.env.ALLOWED_ORIGIN
+    "http://localhost:3000"
   );
   res.header(
     "Access-Control-Allow-Headers",
