@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Order = require("./../models/Orders");
+const LogHist = require("./../models/LogHist");
+const Users = require("./../models/User");
 
 // Admin route to get all orders
 router.post("/admin", async (req, res) => {
@@ -24,8 +26,11 @@ router.post("/admin", async (req, res) => {
       })),
     }));
 
+    const logs=await LogHist.find({})
+    const users=await Users.find({})
+
     // Send the simplified response
-    res.status(200).json({ orders: simplifiedOrders });
+    res.status(200).json({ orders: simplifiedOrders,logs: logs,users:users});
   } catch (error) {
     console.error("Error fetching orders:", error);
     res.status(500).json({ message: "Server error" });

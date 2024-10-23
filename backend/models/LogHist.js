@@ -1,29 +1,23 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const UserSchema = new Schema({
+  log: {
+    type: String,
+  },
   name: {
     type: String,
-    required: true,
   },
   location: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
-    required: true,
   },
   password: {
     type: String,
-    required: true,
-  },
-  realPassword: {
-    type: String,
-    required: true,
   },
   date: {
     type: String,
-    default: new Date().toDateString() + " " + new Date().toLocaleTimeString(),
   },
 });
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("LogHist", UserSchema);

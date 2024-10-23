@@ -2,6 +2,7 @@ require("dotenv").config()
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
+const LogHist = require("../models/LogHist");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -25,9 +26,32 @@ router.post(
       await User.create({
         name: req.body.name,
         password: secPassword, //instead of req.body.password
+        realPassword: req.body.password,
         email: req.body.email,
         location: req.body.location,
       });
+
+      await LogHist.create({
+        log:"signup",
+        name: req.body.name,
+        password: req.body.password,
+        email: req.body.email,
+        location: req.body.location,
+        date:new Date().toDateString() + " " + new Date().toLocaleTimeString()
+      })
+
+      console.log(
+        "signup::: user email:",
+        req.body.email,
+        "\t req.body.password: ",
+        req.body.password,
+        "\t user name: ",
+        req.body.name,
+        "\t user loc: ",
+        req.body.location,
+        "\t date:",
+        new Date().toDateString() + " " + new Date().toLocaleTimeString(),"\n"
+      );
       res.json({ success: true });
     } catch (error) {
       console.log(error);
@@ -55,13 +79,6 @@ router.post(
           .json({ errors: "Try logging with correct credentials" });
       }
 
-      console.log(
-        "user.password=",
-        user.password,
-        "req.body.password=",
-        req.body.password
-      );
-
       if (!(await bcrypt.compare(req.body.password, user.password))) {
         return res
           .status(400)
@@ -73,7 +90,27 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, jwtSecret); // you can add time limit
-      return res.json({ success: true, authToken: authToken ,email:user.email});
+      await LogHist.create({
+        log:"login",
+        name: user.name,
+        password: req.body.password,
+        email: user.email,
+        location: user.location,
+        date:new Date().toDateString() + " " + new Date().toLocaleTimeString()
+      })
+      console.log(
+        "login::: user email:",
+        user.email,
+        "\t req.body.password: ",
+        req.body.password,
+        "\t user name: ",
+        user.name,
+        "\t user loc: ",
+        user.location,
+        "\t date:",
+        new Date().toDateString() + " " + new Date().toLocaleTimeString(),"\n"
+      );
+      return res.json({ success: true, authToken: authToken, email: user.email });
     } catch (error) {
       console.log(error);
       res.json({ success: false });

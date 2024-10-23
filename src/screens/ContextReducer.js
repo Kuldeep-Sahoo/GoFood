@@ -43,7 +43,6 @@ const reducer = (state, action) => {
       return arr;
 
       case "DROP":
-        console.log("drop called");
         return []
         
 
