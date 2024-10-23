@@ -95,11 +95,7 @@ export default function Card(props) {
         {/* new */}
         {cardView ? (
           <Modal onClose={() => setCardView(false)}>
-<<<<<<< HEAD
             <div style={{margin:"150px"}}>{props.desc}</div>
-=======
-            <div style={{ margin: "200px" }}>{props.desc}</div>
->>>>>>> da07a5f (improve card ui)
           </Modal>
         ) : (
           ""
