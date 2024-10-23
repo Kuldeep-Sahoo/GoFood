@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import{Link} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatchCart, useCart } from "./ContextReducer";
 // new
 import Modal from "../Modal";
@@ -10,8 +10,10 @@ export default function Card(props) {
   let options = props.options;
   let priceOptions = Object.keys(options);
 
+  const navigate = useNavigate();
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState("");
+  const [itemAdded, setItemAdded] = useState(false);
 
   const priceRef = useRef();
 
@@ -23,6 +25,13 @@ export default function Card(props) {
   }, []);
 
   const handleAddToCart = async () => {
+    const isLoggedIn = localStorage.getItem("authToken");
+    if (!isLoggedIn) {
+      // Redirect to login if not logged in
+      navigate("/login");
+      return;
+    }
+
     let food = [];
     for (const item of data) {
       if (item.id === props.foodItem._id) {
@@ -30,6 +39,7 @@ export default function Card(props) {
         break;
       }
     }
+
     if (food != []) {
       if (food.size === size) {
         await dispatch({
@@ -38,7 +48,6 @@ export default function Card(props) {
           price: finalPrice,
           qty: qty,
         });
-        return;
       } else if (food.size !== size) {
         await dispatch({
           type: "ADD",
@@ -48,8 +57,9 @@ export default function Card(props) {
           qty: qty,
           size: size,
         });
-        return;
       }
+      setItemAdded(true); // Set itemAdded to true when an item is added
+      setTimeout(() => setItemAdded(false), 3000); // Reset message after 3 seconds
       return;
     }
     await dispatch({
@@ -60,6 +70,8 @@ export default function Card(props) {
       qty: qty,
       size: size,
     });
+    setItemAdded(true); // Set itemAdded to true when an item is added
+    setTimeout(() => setItemAdded(false), 3000); // Reset message after 3 seconds
     console.log(data);
   };
   let finalPrice = qty * parseInt(options[size]);
@@ -68,22 +80,26 @@ export default function Card(props) {
     <div>
       <div className="card mt-2" style={{ width: "18rem", maxHeight: "360px" }}>
         <Link>
-        <img
-          // src="https://www.shutterstock.com/image-photo/close-tasty-burger-isolated-on-600nw-2494691375.jpg"
-          src={props.foodItem.img}
-          // src={imgSrc}
-          className="card-img-top"
-          alt="..."
-          style={{ height: "200px", objectFit: "cover" }}
-          // new
-          onClick={() => setCardView(true)}
-          cardDesc={props.desc}
-        />
+          <img
+            // src="https://www.shutterstock.com/image-photo/close-tasty-burger-isolated-on-600nw-2494691375.jpg"
+            src={props.foodItem.img}
+            // src={imgSrc}
+            className="card-img-top"
+            alt="..."
+            style={{ height: "130px", objectFit: "cover" }}
+            // new
+            onClick={() => setCardView(true)}
+            cardDesc={props.desc}
+          />
         </Link>
         {/* new */}
         {cardView ? (
           <Modal onClose={() => setCardView(false)}>
+<<<<<<< HEAD
             <div style={{margin:"150px"}}>{props.desc}</div>
+=======
+            <div style={{ margin: "200px" }}>{props.desc}</div>
+>>>>>>> da07a5f (improve card ui)
           </Modal>
         ) : (
           ""
@@ -125,6 +141,7 @@ export default function Card(props) {
           >
             Add to Cart
           </button>
+          {itemAdded  && <p style={{ color: "green" }}><hr></hr>Item added</p>}
         </div>
       </div>
     </div>
