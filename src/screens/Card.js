@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatchCart, useCart } from "./ContextReducer";
 // new
 import Modal from "../Modal";
+import Cart from "./Cart";
 
 export default function Card(props) {
   let dispatch = useDispatchCart();
@@ -14,6 +15,7 @@ export default function Card(props) {
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState("");
   const [itemAdded, setItemAdded] = useState(false);
+  const [cartView, setCartView] = useState(false);
 
   const priceRef = useRef();
 
@@ -59,7 +61,7 @@ export default function Card(props) {
         });
       }
       setItemAdded(true); // Set itemAdded to true when an item is added
-      setTimeout(() => setItemAdded(false), 3000); // Reset message after 3 seconds
+      setTimeout(() => setItemAdded(false), 6000); // Reset message after 3 seconds
       return;
     }
     await dispatch({
@@ -95,7 +97,7 @@ export default function Card(props) {
         {/* new */}
         {cardView ? (
           <Modal onClose={() => setCardView(false)}>
-            <div style={{margin:"150px"}}>{props.desc}</div>
+            <div style={{ margin: "150px" }}>{props.desc}</div>
           </Modal>
         ) : (
           ""
@@ -137,8 +139,21 @@ export default function Card(props) {
           >
             Add to Cart
           </button>
-          {itemAdded  && <p style={{ color: "green" }}><hr></hr>Item added</p>}
+          {itemAdded && (
+            <p style={{ color: "green", fontSize: "15px" }}>
+              <hr></hr>Item added go{" "}
+              <Link onClick={() => setCartView(true)}>My Cart</Link> to view
+              your cart
+            </p>
+          )}
         </div>
+        {cartView ? (
+          <Modal onClose={() => setCartView(false)}>
+            <Cart />
+          </Modal>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
