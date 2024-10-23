@@ -22,15 +22,16 @@ export default function Navbar() {
   const adminRoute = process.env.REACT_APP_ADMIN_ROUTE;
   const handleAdminLogin = () => {
     const password = prompt("if you are admin then enter your password");
-    if (password === "11111") navigate(adminRoute);
-    else alert("Wrong password!");
+    if (password === process.env.REACT_APP_ADMIN_PASSWORD) {
+      navigate(adminRoute);
+    } else alert("Wrong password!");
   };
 
   return (
     <div>
       <nav
         className="navbar navbar-expand-lg navbar-light bg-success fixed-top"
-        style={{ zIndex: "100"}}
+        style={{ zIndex: "100" }}
       >
         <div className="container-fluid">
           <Link className="navbar-brand fs-2 fst-italic" to="/">
