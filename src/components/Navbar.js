@@ -30,7 +30,7 @@ export default function Navbar() {
     <div>
       <nav
         className="navbar navbar-expand-lg navbar-light bg-success fixed-top"
-        style={{ zIndex: "100" }}
+        style={{ zIndex: "100"}}
       >
         <div className="container-fluid">
           <Link className="navbar-brand fs-2 fst-italic" to="/">

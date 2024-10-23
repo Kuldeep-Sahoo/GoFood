@@ -58,7 +58,7 @@ export default function Admin() {
                     <tr key={index}>
                       {index === 0 ? (
                         <>
-                          <td rowSpan={order.orderData.length}>
+                          <td rowSpan={order.orderData.length}style={{maxWidth:"100px",overflow:"hidden"}}>
                             {order.orderId}
                           </td>
                           <td rowSpan={order.orderData.length}>

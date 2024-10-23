@@ -80,7 +80,7 @@ export default function Card(props) {
 
   return (
     <div>
-      <div className="card mt-2" style={{ width: "18rem", maxHeight: "360px" }}>
+      <div className="card mt-2" style={{ width: "18rem", maxHeight: "360px",filter: "drop-shadow(2px 4px 60px black)"}}>
         <Link>
           <img
             // src="https://www.shutterstock.com/image-photo/close-tasty-burger-isolated-on-600nw-2494691375.jpg"
@@ -97,7 +97,7 @@ export default function Card(props) {
         {/* new */}
         {cardView ? (
           <Modal onClose={() => setCardView(false)}>
-            <div style={{ margin: "150px" }}>{props.desc}</div>
+            <div style={{ margin: "15px",color:"white" }}>{props.desc}</div>
           </Modal>
         ) : (
           ""

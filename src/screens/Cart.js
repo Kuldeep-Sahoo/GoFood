@@ -61,7 +61,7 @@ export default function Cart() {
           </thead>
           <tbody>
             {data.map((food, index) => (
-              <tr>
+              <tr className="text-white">
                 <th scope="row">{index + 1}</th>
                 <td>{food.name}</td>
                 <td>{food.qty}</td>
@@ -85,7 +85,7 @@ export default function Cart() {
         </table>
         <div>
           {" "}
-          <h1 className="fs-2">Total Price: {totalPrice}/-</h1>{" "}
+          <h1 className="fs-2 text-white">Total Price: {totalPrice}/-</h1>{" "}
         </div>
         <div>
           <p style={{ color: "red" }}>

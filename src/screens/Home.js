@@ -113,35 +113,38 @@ export default function Home() {
         </button>
       </div>
       {/* Logic for display card */}
-      <div className="m-2 container">
+      <div className="m-2">
         {foodCategory.length > 0 ? (
           foodCategory.map((data) => {
             return (
-              <div className="row mb-3">
+              <div className=" mb-3">
                 <div key={data._id} className="fs-3 m-3">
                   {data.CategoryName}
                 </div>
                 <hr />
-                {foodItem.length > 0 ? (
-                  foodItem
-                    .filter((item) => item.CategoryName === data.CategoryName)
-                    .map((filterItem) => {
-                      return (
-                        <div
+                <div
+                  className="card-grid"
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+                    gap: "1rem",
+                  }}
+                >
+                  {foodItem.length > 0 ? (
+                    foodItem
+                      .filter((item) => item.CategoryName === data.CategoryName)
+                      .map((filterItem) => (
+                        <Card
                           key={filterItem._id}
-                          className="col-12 col-md-6 col-lg-3"
-                        >
-                          <Card
-                            foodItem={filterItem}
-                            options={filterItem.options[0]}
-                            desc={filterItem.description}
-                          ></Card>
-                        </div>
-                      );
-                    })
-                ) : (
-                  <div>No item found....</div>
-                )}
+                          foodItem={filterItem}
+                          options={filterItem.options[0]}
+                          desc={filterItem.description}
+                        />
+                      ))
+                  ) : (
+                    <div>No item found....</div>
+                  )}
+                </div>
               </div>
             );
           })
