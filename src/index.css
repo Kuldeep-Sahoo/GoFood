@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "NHaasGroteskDSPro-65Md" !important;
-  padding-top: 50px; /* Adjust this value according to your navbar height */
+  padding-top: 100px; /* Adjust this value according to your navbar height */
 
 }
 
