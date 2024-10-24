@@ -18,3 +18,15 @@
   animation: scaleIn 2s ease forwards; /* Adjust duration as needed */
   transform-origin: center; /* Scale from the center */
 }
+
+
+.feedback-btn{
+  position: fixed;
+  bottom: 10px;
+  font-size: 15px ;
+  right: -75px;
+  transition: .5s all;
+}
+.feedback-btn:hover{
+  right: 10px;
+}

@@ -4,12 +4,15 @@ import Navbar from "../components/Navbar";
 import Card from "../screens/Card";
 // import Carousel from "../components/Carousel";
 import "./Home.css";
+import Modal from "./../Modal";
+import FeedbackForm from "./FeedbackForm";
 
 export default function Home() {
   const [search, setSearch] = useState("");
   const [foodItem, setfoodItem] = useState([]);
   const [foodCategory, setfoodCategory] = useState([]);
   const [animate, setAnimate] = useState(true); // State for animation
+  const [visible, setVisible] = useState(false);
 
   const loadData = async () => {
     let response = await fetch(`${process.env.REACT_APP_API_URL}/foodData`, {
@@ -188,6 +191,30 @@ export default function Home() {
       <div>
         <Footer />
       </div>
+      {
+        localStorage.getItem("authToken")?(
+
+      <div>
+        <button
+          type="button"
+          class="btn btn-primary btn-lg feedback-btn"
+          data-bs-target="#feedbackModal"
+          onClick={setVisible}
+        >
+          Feedback
+        </button>
+        {visible ? (
+          <Modal onClose={() => setVisible(false)}>
+            <FeedbackForm />
+          </Modal>
+        ) : (
+          ""
+        )}
+      </div>
+        ):(
+          ""
+        )
+      }
     </div>
   );
 }
