@@ -1,7 +1,7 @@
 # GoFood
 
 ## Live Demo
-Check out the live version of the GoFood website [here](https://gofood-yv05.onrender.com).
+Check out the live version of the GoFood website [here](https://gofood-kuldeep.onrender.com/).
 
 ## Getting Started
 
