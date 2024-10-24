@@ -104,7 +104,14 @@ export default function Card(props) {
         {/* new */}
         {cardView ? (
           <Modal onClose={() => setCardView(false)}>
-            <div style={{ margin: "15px", color: "white" }}>{props.desc}</div>
+            <div style={{ margin: "15px", color: "white"}}>
+              <img
+                src={props.foodItem.img}
+                alt="..."
+                style={{ display: "block",width:"97%",maxHeight:"500px" }}
+              />
+              <h1>{props.desc}</h1>
+            </div>
           </Modal>
         ) : (
           ""
