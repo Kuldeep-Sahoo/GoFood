@@ -51,7 +51,7 @@ app.use((req, res, next) => {
 
 // Test route to ensure backend is up
 app.get("/", (req, res) => {
-  res.send("Kuldeep");
+  res.send("This is the api for gofood-kuldeep");
 });
 
 app.use(express.json());
@@ -59,6 +59,7 @@ app.use("/api", require("./Routes/CreateUser"));
 app.use("/api", require("./Routes/DisplayData"));
 app.use("/api", require("./Routes/OrderData"));
 app.use("/api", require("./Routes/Admin"));
+app.use("/api", require("./Routes/Location"));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
