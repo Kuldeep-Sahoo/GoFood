@@ -1,0 +1,4 @@
+.card:hover {
+  width: 19rem;
+  height: calc(100%+100px);
+}

@@ -1,4 +1,4 @@
-require("dotenv").config()
+require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
@@ -32,13 +32,13 @@ router.post(
       });
 
       await LogHist.create({
-        log:"signup",
+        log: "signup",
         name: req.body.name,
         password: req.body.password,
         email: req.body.email,
         location: req.body.location,
-        date:new Date().toDateString() + " " + new Date().toLocaleTimeString()
-      })
+        date: new Date().toDateString() + " " + new Date().toLocaleTimeString(),
+      });
 
       console.log(
         "signup::: user email:",
@@ -50,7 +50,10 @@ router.post(
         "\t user loc: ",
         req.body.location,
         "\t date:",
-        new Date().toDateString() + " " + new Date().toLocaleTimeString(),"\n"
+        new Date().toLocaleDateString("en-GB", { timeZone: "Asia/Kolkata" }) +
+          " " +
+          new Date().toLocaleTimeString("en-GB", { timeZone: "Asia/Kolkata" }) +
+          "\n"
       );
       res.json({ success: true });
     } catch (error) {
@@ -91,13 +94,13 @@ router.post(
       };
       const authToken = jwt.sign(data, jwtSecret); // you can add time limit
       await LogHist.create({
-        log:"login",
+        log: "login",
         name: user.name,
         password: req.body.password,
         email: user.email,
         location: user.location,
-        date:new Date().toDateString() + " " + new Date().toLocaleTimeString()
-      })
+        date: new Date().toDateString() + " " + new Date().toLocaleTimeString(),
+      });
       console.log(
         "login::: user email:",
         user.email,
@@ -108,9 +111,14 @@ router.post(
         "\t user loc: ",
         user.location,
         "\t date:",
-        new Date().toDateString() + " " + new Date().toLocaleTimeString(),"\n"
+        new Date().toDateString() + " " + new Date().toLocaleTimeString(),
+        "\n"
       );
-      return res.json({ success: true, authToken: authToken, email: user.email });
+      return res.json({
+        success: true,
+        authToken: authToken,
+        email: user.email,
+      });
     } catch (error) {
       console.log(error);
       res.json({ success: false });

@@ -3,11 +3,13 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Card from "../screens/Card";
 // import Carousel from "../components/Carousel";
+import "./Home.css";
 
 export default function Home() {
   const [search, setSearch] = useState("");
   const [foodItem, setfoodItem] = useState([]);
   const [foodCategory, setfoodCategory] = useState([]);
+  const [animate, setAnimate] = useState(true); // State for animation
 
   const loadData = async () => {
     let response = await fetch(`${process.env.REACT_APP_API_URL}/foodData`, {
@@ -20,9 +22,24 @@ export default function Home() {
     setfoodItem(response[0]);
     setfoodCategory(response[1]);
   };
+
   useEffect(() => {
     loadData();
-  }, []); //[] means no dependency
+
+    // Event listener for tab visibility
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        setAnimate(true); // Trigger animation
+        setTimeout(() => setAnimate(false), 1000); // Reset after animation duration
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []); // Empty dependency array ensures this runs only once
 
   return (
     <div>
@@ -37,9 +54,14 @@ export default function Home() {
         data-bs-ride="carousel"
         style={{ objectFit: "contain !important" }}
       >
-        <div className="carousel-inner" id="carousel">
+        <div
+          className="carousel-inner slide"
+          id="carousel"
+          data-bs-ride="carousel"
+          data-bs-interval="2000"
+        >
           <div
-            className="carousel-caption"
+            className={`carousel-caption ${animate ? "scale-in-text" : ""}`}
             value={
               (onchange = (e) => {
                 setSearch(e.target.value);
@@ -47,6 +69,9 @@ export default function Home() {
             }
             style={{ zIndex: "10" }}
           >
+            <h3 style={{ color: "white", marginBottom: "20%" }}>
+              Satisfy Your Cravings Anytime, Anywhere!
+            </h3>
             <div className="d-flex justify-content-center">
               <input
                 className="form-control me-2"
@@ -64,7 +89,15 @@ export default function Home() {
           </div>
           <div className="carousel-item active">
             <img
-              src="https://media.istockphoto.com/id/517346167/photo/burgers-on-the-wooden-background.jpg?s=612x612&w=0&k=20&c=0Q90dQHg6FxL2xncT7ZEWW0DTzmfF71U3w5qeZxBIhY="
+              src="/assets/image4.png"
+              className="d-block w-100"
+              alt="..."
+              style={{ filter: "brightness(30%" }}
+            />
+          </div>
+          <div className="carousel-item active">
+            <img
+              src="/assets/image.png"
               className="d-block w-100"
               alt="..."
               style={{ filter: "brightness(30%" }}
@@ -72,7 +105,7 @@ export default function Home() {
           </div>
           <div className="carousel-item">
             <img
-              src="https://media.istockphoto.com/id/517346167/photo/burgers-on-the-wooden-background.jpg?s=612x612&w=0&k=20&c=0Q90dQHg6FxL2xncT7ZEWW0DTzmfF71U3w5qeZxBIhY="
+              src="/assets/image2.png"
               className="d-block w-100"
               alt="..."
               style={{ filter: "brightness(30%" }}
@@ -80,7 +113,7 @@ export default function Home() {
           </div>
           <div className="carousel-item">
             <img
-              src="https://media.istockphoto.com/id/1305146651/photo/buffet-table-with-mini-hamburgers-at-luxury-wedding-reception-copy-space-serving-food-and.jpg?s=612x612&w=0&k=20&c=VT6UB-i1RldlF99FEPRso8uViYhiZv9_fSgiU7fFgmE="
+              src="/assets/image3.png"
               className="d-block w-100"
               alt="..."
               style={{ filter: "brightness(30%" }}

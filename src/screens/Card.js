@@ -80,7 +80,14 @@ export default function Card(props) {
 
   return (
     <div>
-      <div className="card mt-2" style={{ width: "18rem", maxHeight: "360px",filter: "drop-shadow(2px 4px 60px black)"}}>
+      <div
+        className="card mt-2"
+        style={{
+          width: "18rem",
+          maxHeight: "360px",
+          filter: "drop-shadow(2px 4px 60px black)",
+        }}
+      >
         <Link>
           <img
             // src="https://www.shutterstock.com/image-photo/close-tasty-burger-isolated-on-600nw-2494691375.jpg"
@@ -88,7 +95,7 @@ export default function Card(props) {
             // src={imgSrc}
             className="card-img-top"
             alt="..."
-            style={{ height: "130px", objectFit: "cover" }}
+            style={{ maxHeight: "130px", objectFit: "cover", width: "100%" }}
             // new
             onClick={() => setCardView(true)}
             cardDesc={props.desc}
@@ -97,7 +104,7 @@ export default function Card(props) {
         {/* new */}
         {cardView ? (
           <Modal onClose={() => setCardView(false)}>
-            <div style={{ margin: "15px",color:"white" }}>{props.desc}</div>
+            <div style={{ margin: "15px", color: "white" }}>{props.desc}</div>
           </Modal>
         ) : (
           ""
