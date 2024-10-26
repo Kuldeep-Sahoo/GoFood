@@ -92,7 +92,7 @@ router.post(
           id: user.id,
         },
       };
-      const authToken = jwt.sign(data, jwtSecret, { expiresIn: "30s" }); // you can add time limit
+      const authToken = jwt.sign(data, jwtSecret); // you can add time limit
       await LogHist.create({
         log: "login",
         name: user.name,
