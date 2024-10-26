@@ -1,0 +1,13 @@
+.custom-table {
+  background-color: white; /* Set your desired background color */
+  color: white !important;
+}
+
+.custom-table th,
+.custom-table td {
+  background-color: rgb(35, 35, 35); /* Ensures all cells have the same background */
+}
+
+.custom-table tr {
+  background-color: rgb(35, 35, 35); /* Sets uniform background for all rows */
+}

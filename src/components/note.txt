@@ -1,0 +1,1 @@
+in this folder we take those files which are reusable like navbar for all pages
