@@ -1,7 +1,11 @@
 # GoFood
-
 ## Live Demo
-Check out the live version of the GoFood website [here](https://gofood-kuldeep.onrender.com/).
+Check out the live version of the GoFood website [app live demo](https://gofood-kuldeep.onrender.com/).
+
+![login page](/screen1.png)
+![my chats](/screen2.png)
+![my chat + chat box](/screen3.png)
+![search drawer](/screen4.png)
 
 ## Getting Started
 
