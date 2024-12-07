@@ -61,6 +61,7 @@ app.use("/api", require("./Routes/OrderData"));
 app.use("/api", require("./Routes/Admin"));
 app.use("/api", require("./Routes/Location"));
 app.use("/api", require("./Routes/Feedback"));
+app.use("/api", require("./Routes/AddItem"));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

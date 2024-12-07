@@ -7,14 +7,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: "NHaasGroteskDSPro-65Md" !important;
   padding-top: 80px; /* Adjust this value according to your navbar height */
-
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-#carousel{
+#carousel {
   max-height: 500px;
-  
 }

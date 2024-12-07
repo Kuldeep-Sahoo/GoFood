@@ -14,6 +14,7 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 import Cart from "./screens/Cart.js";
 import MyOrder from "./screens/MyOrder.js";
 import Admin from "./screens/Admin.js";
+import AddFoodItem from "./components/AddFoodItem.js";
 
 const adminRoute = process.env.REACT_APP_ADMIN_ROUTE;
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route exact path="/createuser" element={<Signup />} />
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/myOrders" element={<MyOrder />} />
+            <Route exact path="/AddFoodItem" element={<AddFoodItem />} />
             {adminRoute && (
               <Route exact path={adminRoute} element={<Admin />} />
             )}

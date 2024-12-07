@@ -1,5 +1,3 @@
-// rfc-->Creates a React Functional Component with ES7 module system (ES7+ React/Redux/React-Native snippets)
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Badge from "react-bootstrap/Badge";
@@ -9,9 +7,9 @@ import { useCart } from "../screens/ContextReducer";
 
 export default function Navbar() {
   const [cartView, setCartView] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false); // State for toggling the navbar
 
   var data = useCart();
-
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -27,6 +25,10 @@ export default function Navbar() {
     } else alert("Wrong password!");
   };
 
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen); // Toggle the navbar state
+  };
+
   return (
     <div>
       <nav
@@ -40,16 +42,18 @@ export default function Navbar() {
           <button
             className="navbar-toggler"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            onClick={toggleNav} // Toggle on button click
+            aria-expanded={isNavOpen ? "true" : "false"} // Set aria-expanded based on the state
           >
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarNav">
+          <div
+            className={`collapse navbar-collapse ${isNavOpen ? "show" : ""}`}
+            id="navbarNav"
+          >
+            {" "}
+            {/* Conditionally apply the 'show' class */}
             <ul className="navbar-nav me-auto mb-1">
               <li className="nav-item">
                 {" "}

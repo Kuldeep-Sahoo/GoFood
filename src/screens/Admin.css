@@ -11,3 +11,16 @@
 .custom-table tr {
   background-color: rgb(35, 35, 35); /* Sets uniform background for all rows */
 }
+
+.addItem{
+  position: fixed;
+  bottom: 60px;
+  font-size: 15px ;
+  right: 40px;
+  transition: .5s all;
+  color: aliceblue;
+}
+.addItem:hover{
+  color: aliceblue;
+  right: 10px;
+}

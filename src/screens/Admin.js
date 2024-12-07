@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import "./Admin.css"; // Import custom CSS file
 
+
 export default function Admin() {
   const [orders, setOrders] = useState([]);
   const [logs, setLogs] = useState([]);
@@ -62,10 +63,10 @@ export default function Admin() {
   }, []); // Empty dependency array means this runs once on component mount
 
   return (
-    <div >
+    <div>
       <Navbar />
       {/* OrderList and Feedbacks*/}
-      <div style={{ display: "flex", wordWrap:"wrap"}}>
+      <div style={{ display: "flex", wordWrap: "wrap" }}>
         <div
           className="container"
           style={{
@@ -279,6 +280,18 @@ export default function Admin() {
           )}
         </div>
       </div>
+      <Link
+        to={"/AddFoodItem"}
+        style={{
+          padding: "10px",
+          backgroundColor: "red",
+          borderRadius: "10px",
+          textDecoration: "none",
+        }}
+        className="addItem"
+      >
+        Add Item
+      </Link>
     </div>
   );
 }

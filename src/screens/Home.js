@@ -6,6 +6,7 @@ import Card from "../screens/Card";
 import "./Home.css";
 import Modal from "./../Modal";
 import FeedbackForm from "./FeedbackForm";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -191,30 +192,29 @@ export default function Home() {
       <div>
         <Footer />
       </div>
-      {
-        localStorage.getItem("authToken")?(
+      {localStorage.getItem("authToken") ? (
+        <div>
+          <button
+            type="button"
+            class="btn btn-primary btn-lg feedback-btn"
+            data-bs-target="#feedbackModal"
+            onClick={setVisible}
+          >
+            Feedback
+          </button>
 
-      <div>
-        <button
-          type="button"
-          class="btn btn-primary btn-lg feedback-btn"
-          data-bs-target="#feedbackModal"
-          onClick={setVisible}
-        >
-          Feedback
-        </button>
-        {visible ? (
-          <Modal onClose={() => setVisible(false)}>
-            <FeedbackForm />
-          </Modal>
-        ) : (
-          ""
-        )}
-      </div>
-        ):(
-          ""
-        )
-      }
+          
+          {visible ? (
+            <Modal onClose={() => setVisible(false)}>
+              <FeedbackForm />
+            </Modal>
+          ) : (
+            ""
+          )}
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
