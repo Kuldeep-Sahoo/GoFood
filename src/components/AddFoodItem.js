@@ -48,7 +48,7 @@ const AddFoodItem = () => {
     }, []);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/addItem", {
+      const response = await axios.post("https://gofood-kuldeep.onrender.com/api/addItem", {
         CategoryName: category, // Send category as a single string
         name,
         img,
